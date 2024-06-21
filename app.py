@@ -16,5 +16,15 @@ def add_todo():
         todos.append({'task': todo, 'completed': False})
     return redirect(url_for('index'))
 
+@app.route('/complete/<int:todo_id>')
+def complete_todo(todo_id):
+    todos[todo_id]['completed'] = True
+    return redirect(url_for('index'))
+
+@app.route('/delete/<int:todo_id>')
+def delete_todo(todo_id):
+    todos.pop(todo_id)
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)

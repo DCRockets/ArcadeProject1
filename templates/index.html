@@ -12,9 +12,14 @@
     <button type="submit">Add</button>
 </form>
 <ul>
-    {% for todo in todos %}
-    <li>{{ todo.task }}</li>
+    {% for i, todo in enumerate(todos) %}
+    <li style="text-decoration: {% if todo.completed %}line-through{% endif %};">
+        {{ todo.task }}
+        <a class="complete" href="{{ url_for('complete_todo', todo_id=i) }}">Complete</a>
+        <a href="{{ url_for('delete_todo', todo_id=i) }}">Delete</a>
+    </li>
     {% endfor %}
 </ul>
 </body>
 </html>
+
